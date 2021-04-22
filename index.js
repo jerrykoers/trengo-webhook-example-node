@@ -26,26 +26,30 @@ app.use(
 );
 
 app.get("/*", (req, res) => {
-  res.send("Hello world sdfsdfds test");
+  res.send("Trengo dashboard - Verploegen");
+  res.send('<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>');
 });
 
-/*
 app.post("/voice-call-started", (req, res) => {
+  res.send("Trengo Dashboard - Voice call started");
   console.log(req.body) // Call your action on the request here
   res.send(req.body);
   res.status(200).end() // Responding is important
 })
 
 app.post("/voice-call-ended", (req, res) => {
+  res.send("Trengo Dashboard - Voice call ended");
   console.log(req.body) // Call your action on the request here
   res.status(200).end() // Responding is important
 })
 
 app.post("/voice-call-missed", (req, res) => {
+  res.send("Trengo Dashboard - Voice call missed");
   console.log(req.body) // Call your action on the request here
   res.status(200).end() // Responding is important
 })
 
+/*
 // listen for POST requests to '/my-endpoint'
 app.post("/my-endpoint", (req, res) => {
   // get signature header
@@ -62,7 +66,6 @@ app.post("/my-endpoint", (req, res) => {
     console.error("invalid signature, did you correctly set your SIGNING_SECRET?");
   }
 });
-*/
 
 // listen for POST requests to '/my-endpoint'
 app.post("/voice-call-started", (req, res) => {
@@ -74,7 +77,7 @@ app.post("/voice-call-started", (req, res) => {
   // verify the signature
   if (verify(payload, signature, signingSecret)) {
     res.send("Trengo Dashboard - Voice call started");
-    console.log("Voice call started", req.body);
+    console.log("Do something with the body", req.body);
   } else {
     res.status(401).send("Unauthorized");
     console.error("invalid signature, did you correctly set your SIGNING_SECRET?");
@@ -112,6 +115,7 @@ app.post("/voice-call-missed", (req, res) => {
     console.error("invalid signature, did you correctly set your SIGNING_SECRET?");
   }
 });
+*/
 
 // the function to verify the trengo-signature
 function verify(payload, signature, signingSecret) {
