@@ -25,11 +25,11 @@ app.use(
   })
 );
 
-/*
 app.get("/*", (req, res) => {
   res.send("Hello world sdfsdfds test");
 });
 
+/*
 app.post("/voice-call-started", (req, res) => {
   console.log(req.body) // Call your action on the request here
   res.send(req.body);
