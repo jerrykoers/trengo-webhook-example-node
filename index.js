@@ -25,6 +25,7 @@ app.use(
   })
 );
 
+/*
 app.get("/*", (req, res) => {
   res.send("Hello world sdfsdfds test");
 });
@@ -55,6 +56,24 @@ app.post("/my-endpoint", (req, res) => {
   // verify the signature
   if (verify(payload, signature, signingSecret)) {
     res.send("Valid signature");
+    console.log("Do something with the body", req.body);
+  } else {
+    res.status(401).send("Unauthorized");
+    console.error("invalid signature, did you correctly set your SIGNING_SECRET?");
+  }
+});
+*/
+
+// listen for POST requests to '/my-endpoint'
+app.post("/voice-call-started", (req, res) => {
+  // get signature header
+  const signature = req.header("Trengo-Signature") || '';
+  // get raw request body
+  const payload = req.rawBody || '';
+
+  // verify the signature
+  if (verify(payload, signature, signingSecret)) {
+    res.send("Trengo Dashboard - Verploegen");
     console.log("Do something with the body", req.body);
   } else {
     res.status(401).send("Unauthorized");
