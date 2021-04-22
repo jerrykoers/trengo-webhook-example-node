@@ -26,7 +26,7 @@ app.use(
 );
 
 app.get("/*", (req, res) => {
-  res.send("Hello world");
+  res.send("Hello world sdfsdfds");
 });
 
 // listen for POST requests to '/my-endpoint'
