@@ -3,6 +3,7 @@ const CryptoJS = require("crypto-js");
 // const { Client } = require('pg');
 require('dotenv').config();
 
+/*
 // connect to database on Heroku
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
@@ -20,6 +21,7 @@ client.query('SELECT * FROM postgresql-asymmetrical-24775;', (err, res) => {
   }
   client.end();
 });
+*/
 
 // insert your signing secret in the .env file
 const signingSecret = process.env.SIGNING_SECRET || '';
