@@ -47,6 +47,38 @@ app.post("/voice-call-started", (req, res) => {
   }
 });
 
+app.post("/voice-call-ended", (req, res) => {
+  // get signature header
+  const signature = req.header("Trengo-Signature") || '';
+  // get raw request body
+  const payload = req.rawBody || '';
+
+  // verify the signature
+  if (verify(payload, signature, signingSecret)) {
+    res.send("Trengo Dashboard - Voice call ended");
+    console.log("Voice call ended", req.body);
+  } else {
+    res.status(401).send("Unauthorized");
+    console.error("invalid signature, did you correctly set your SIGNING_SECRET?");
+  }
+});
+
+app.post("/voice-call-missed", (req, res) => {
+  // get signature header
+  const signature = req.header("Trengo-Signature") || '';
+  // get raw request body
+  const payload = req.rawBody || '';
+
+  // verify the signature
+  if (verify(payload, signature, signingSecret)) {
+    res.send("Trengo Dashboard - Voice call missed");
+    console.log("Voice call missed", req.body);
+  } else {
+    res.status(401).send("Unauthorized");
+    console.error("invalid signature, did you correctly set your SIGNING_SECRET?");
+  }
+});
+
 /*
 app.post("/voice-call-started", (req, res) => {
   res.send("Trengo Dashboard - Voice call started");
@@ -95,38 +127,6 @@ app.post("/voice-call-started", (req, res) => {
   if (verify(payload, signature, signingSecret)) {
     res.send("Trengo Dashboard - Voice call started");
     console.log("Do something with the body", req.body);
-  } else {
-    res.status(401).send("Unauthorized");
-    console.error("invalid signature, did you correctly set your SIGNING_SECRET?");
-  }
-});
-
-app.post("/voice-call-ended", (req, res) => {
-  // get signature header
-  const signature = req.header("Trengo-Signature") || '';
-  // get raw request body
-  const payload = req.rawBody || '';
-
-  // verify the signature
-  if (verify(payload, signature, signingSecret)) {
-    res.send("Trengo Dashboard - Voice call ended");
-    console.log("Voice call ended", req.body);
-  } else {
-    res.status(401).send("Unauthorized");
-    console.error("invalid signature, did you correctly set your SIGNING_SECRET?");
-  }
-});
-
-app.post("/voice-call-missed", (req, res) => {
-  // get signature header
-  const signature = req.header("Trengo-Signature") || '';
-  // get raw request body
-  const payload = req.rawBody || '';
-
-  // verify the signature
-  if (verify(payload, signature, signingSecret)) {
-    res.send("Trengo Dashboard - Voice call missed");
-    console.log("Voice call missed", req.body);
   } else {
     res.status(401).send("Unauthorized");
     console.error("invalid signature, did you correctly set your SIGNING_SECRET?");
