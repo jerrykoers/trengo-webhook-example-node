@@ -1,6 +1,6 @@
 var express = require('express');
 const CryptoJS = require("crypto-js");
-const { Client } = require('pg');
+// const { Client } = require('pg');
 require('dotenv').config();
 
 /*
