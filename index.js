@@ -25,11 +25,29 @@ app.use(
   })
 );
 
-app.get("/*", (req, res) => {
-  res.send("Trengo dashboard - Verploegen");
-  res.send('<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>');
+app.get("/", (req, res) => {
+  res.render('pages/dashboard');
+  // res.send("Trengo dashboard - Verploegen");
 });
 
+// listen for POST requests to '/voice-call-started'
+app.post("/voice-call-started", (req, res) => {
+  // get signature header
+  const signature = req.header("Trengo-Signature") || '';
+  // get raw request body
+  const payload = req.rawBody || '';
+
+  // verify the signature
+  if (verify(payload, signature, signingSecret)) {
+    res.send("Trengo Dashboard - Voice call started");
+    console.log("Do something with the body", req.body);
+  } else {
+    res.status(401).send("Unauthorized");
+    console.error("invalid signature, did you correctly set your SIGNING_SECRET?");
+  }
+});
+
+/*
 app.post("/voice-call-started", (req, res) => {
   res.send("Trengo Dashboard - Voice call started");
   console.log(req.body) // Call your action on the request here
@@ -49,7 +67,6 @@ app.post("/voice-call-missed", (req, res) => {
   res.status(200).end() // Responding is important
 })
 
-/*
 // listen for POST requests to '/my-endpoint'
 app.post("/my-endpoint", (req, res) => {
   // get signature header
