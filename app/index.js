@@ -3,7 +3,6 @@ const CryptoJS = require("crypto-js");
 // const { Client } = require('pg');
 require('dotenv').config();
 
-/*
 // connect to database on Heroku
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
@@ -21,7 +20,6 @@ client.query('SELECT * FROM postgresql-asymmetrical-24775;', (err, res) => {
   }
   client.end();
 });
-*/
 
 // insert your signing secret in the .env file
 const signingSecret = process.env.SIGNING_SECRET || '';
@@ -48,7 +46,7 @@ app.use(
 
 app.get("/*", (req, res) => {
   // res.render('pages/dashboard');
-  res.send("Trengo dashboard - Verploegen");
+  res.send("Trengo dashboard - Verploegen APP");
 });
 
 app.post("/voice-call-started", (req, res) => {
