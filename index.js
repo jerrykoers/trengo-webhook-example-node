@@ -25,9 +25,9 @@ app.use(
   })
 );
 
-app.get("/", (req, res) => {
-  res.render('pages/dashboard');
-  // res.send("Trengo dashboard - Verploegen");
+app.get("/*", (req, res) => {
+  // res.render('pages/dashboard');
+  res.send("Trengo dashboard - Verploegen");
 });
 
 // listen for POST requests to '/voice-call-started'
