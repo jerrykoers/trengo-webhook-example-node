@@ -32,20 +32,19 @@ app.get("/*", (req, res) => {
 
 app.post("/voice-call-started", (req, res) => {
   res.send("Trengo Dashboard - Voice call started");
-  console.log(req.body) // Call your action on the request here
-  res.send(req.body);
+  console.log(req.body.channel_id + ' - ' + req.body.ticket_id + ' - ' + req.body.user_name) // Call your action on the request here
   res.status(200).end() // Responding is important
 })
 
 app.post("/voice-call-ended", (req, res) => {
   res.send("Trengo Dashboard - Voice call ended");
-  console.log(req.body) // Call your action on the request here
+  console.log(req.body.channel_id + ' - ' + req.body.ticket_id + ' - ' + req.body.user_name) // Call your action on the request here
   res.status(200).end() // Responding is important
 })
 
 app.post("/voice-call-missed", (req, res) => {
   res.send("Trengo Dashboard - Voice call missed");
-  console.log(req.body) // Call your action on the request here
+  console.log(req.body.channel_id + ' - ' + req.body.ticket_id + ' - ' + req.body.user_name) // Call your action on the request here
   res.status(200).end() // Responding is important
 })
 
